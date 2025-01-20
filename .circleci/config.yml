@@ -9,7 +9,7 @@ jobs:
     machine:
       image: ubuntu-2004:current
     environment:
-      DOCKER_IMAGE: xxx
+      DOCKER_IMAGE: vblaas/chuckci
       DOCKER_TAG: latest
     steps:
       - checkout
@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Run the application to check if it's running
           command: |
-          
+
       - run:
           name: Push Docker Image to DockerHub
           command: |
