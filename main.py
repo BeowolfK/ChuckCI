@@ -1,16 +1,12 @@
 import requests
+from flask import Flask, render_template
+
+app = Flask(__name__)
+API_chuck = "https://api.chucknorris.io/jokes/random"
+API_dog = "https://dog.ceo/api/breeds/image/random"
 
 
-def main():
-    API_chuck = "https://api.chucknorris.io/jokes/random"
-    API_dog = "https://dog.ceo/api/breeds/image/random"
-    message_chuck = call_chuck(API_chuck)
-    image_chien = call_dog(API_dog)
-    fr_chuck = call_transalte(message_chuck)
-    print(fr_chuck)
-
-
-def call_chuck(url): 
+def call_chuck(url):
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -42,6 +38,18 @@ def call_transalte(chuck_message):
         return data[0][0][0]
     except requests.exceptions.RequestException as e:
         print(f"Erreur lors de l'appel à l'API Translate : {e}")
+
+
+@app.route('/')
+def home():
+    message_chuck = call_chuck(API_chuck)
+    image_chien = call_dog(API_dog)
+    fr_chuck = call_transalte(message_chuck)
+    return render_template('index.html', image_url=image_chien, texte=fr_chuck)
+
+
+def main():
+    app.run(host="0.0.0.0", port="8080", debug=False)
 
 
 if __name__ == "__main__":
