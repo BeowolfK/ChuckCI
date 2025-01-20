@@ -21,9 +21,6 @@ jobs:
           name: Login to DockerHub
           command: |
             docker login -u $DOCKERHUB_USERNAME -p $TOKEN_DOCKER
-      - run:
-          name: Run the application to check if it's running
-          command: |
 
       - run:
           name: Push Docker Image to DockerHub
