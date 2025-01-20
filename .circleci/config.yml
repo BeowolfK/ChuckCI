@@ -1,0 +1,34 @@
+version: 2.1
+workflows:
+  version: 2
+  build-and-push:
+    jobs:
+      - build-and-push
+jobs:
+  build-and-push:
+    machine:
+      image: ubuntu-2004:current
+    environment:
+      DOCKER_IMAGE: xxx
+      DOCKER_TAG: latest
+    steps:
+      - checkout
+      - run:
+          name: Build Docker Image
+          command: |
+            docker build -t $DOCKER_IMAGE:$DOCKER_TAG . 
+      - run:
+          name: Login to DockerHub
+          command: |
+            docker login -u $DOCKERHUB_USERNAME -p $TOKEN_DOCKER
+      - run:
+          name: Run the application to check if it's running
+          command: |
+            docker run -d -p 8080:8080 $DOCKER_IMAGE:$DOCKER_TAG
+            sleep 5  
+            curl http://127.0.0.1:8080 
+        
+      - run:
+          name: Push Docker Image to DockerHub
+          command: |
+            docker push $DOCKER_IMAGE:$DOCKER_TAG
