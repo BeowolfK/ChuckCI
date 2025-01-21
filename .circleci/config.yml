@@ -21,7 +21,12 @@ jobs:
           name: Login to DockerHub
           command: |
             docker login -u $DOCKERHUB_USERNAME -p $TOKEN_DOCKER
-
+      - run:
+          name: Login to DockerHub
+          command: |
+            docker run -d -p 
+            sleep 10
+            curl 127.0.0.1:8080
       - run:
           name: Push Docker Image to DockerHub
           command: |
