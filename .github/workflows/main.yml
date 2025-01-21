@@ -39,7 +39,7 @@ jobs:
         run: |
           docker run -d -p 8080:8080 $DOCKER_IMAGE:$DOCKER_TAG
           sleep 10
-          curl 127.0.0.1:8080
+          curl 127.0.0.1:8000
 
       - name: Push Docker image to DockerHub
         run: |
