@@ -14,9 +14,16 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Python Dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+      - run:
           name: Run Tests
           command: |
-            pytest
+            python -m pytest
       - run:
           name: Build Docker Image
           command: |
