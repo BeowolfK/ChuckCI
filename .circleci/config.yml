@@ -14,6 +14,14 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Python Dependencies And Run Tests
+          command: |
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            python3 -m pytest
+      - run:
           name: Build Docker Image
           command: |
             docker build -t $DOCKER_IMAGE:$DOCKER_TAG . 
@@ -21,7 +29,13 @@ jobs:
           name: Login to DockerHub
           command: |
             docker login -u $DOCKERHUB_USERNAME -p $TOKEN_DOCKER
-
+      - run:
+          name: Run and Curl APP
+          command: |
+            docker run -d -p 8080:8080 $DOCKER_IMAGE:$DOCKER_TAG
+            sleep 10
+            curl 127.0.0.1:8080
+       
       - run:
           name: Push Docker Image to DockerHub
           command: |
