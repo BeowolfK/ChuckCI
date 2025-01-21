@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Chuck Norris Jokes</title>
-    <link rel="stylesheet" href="C:\Users\doria\OneDrive\Images\CI maintient\projet\static\css\styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+
 <body>
-            <div class="container">
-                <header>
-                    <h1>Blague de chuk & des chiens</h1>
-                    <p>Clique en dessous pour générer une image de chien et une blague !</p>
-                </header>
-                <main>
-                    <button id="generate-button">
-                        <i class="fas fa-laugh-beam"></i> Générer!
-                    </button>
-                    <div id="result">
-                        <div id="joke-container">
-                             <p>{{ texte }}</p>
-                        </div>
-                        <div id="dog-container">
-                                <img src="{{ image_url }}" alt="Image" style="max-width: 100%; height: auto;">                        
-                        </div>
-                    </div>
-                </main>
-                <footer>
-                    <p>Créée avec le ❤️ pour énormément de fun haha ! 😂looool</p>
-                </footer>
+    <div class="container">
+        <header>
+            <h1>Blague de chuk & des chiens</h1>
+            <p>Clique en dessous pour générer une image de chien et une blague !</p>
+        </header>
+        <main>
+            <div id="result">
+                <div id="joke-container">
+                    <p>{{ texte }}</p>
+                </div>
+                <div id="dog-container">
+                    <img src="{{ image_url }}" alt="Image" style="max-width: 100%; height: auto;">
+                </div>
             </div>
-            <script src="/static/js/script.js"></script>
-        </body>
-     </html>
+            <button id="generate-button">
+                <i class="fas fa-laugh-beam"></i> Générer!
+            </button>
+        </main>
+        <footer>
+            <p>Créée avec le ❤️ pour énormément de fun haha ! 😂looool</p>
+        </footer>
+    </div>
+    <script>
+        document.getElementById("generate-button").addEventListener("click", function () {
+            location.reload();
+        });
+    </script>
+
+</body>
+
+</html>
