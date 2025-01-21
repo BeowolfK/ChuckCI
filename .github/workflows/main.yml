@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  release:
+    types:
+      - created
 
 jobs:
   build-and-push:
@@ -11,7 +14,7 @@ jobs:
     environment: envCI # Spécifie l'environnement
     env:
       DOCKER_IMAGE: vblaas/chuckci
-      DOCKER_TAG: latest
+      DOCKER_TAG: ${{ github.event_name == 'release' && github.event.release.tag_name || github.sha }}
 
     steps:
       - name: Checkout code
@@ -24,7 +27,7 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
           python3 -m pytest
-      
+
       - name: Log in to DockerHub
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -44,22 +47,3 @@ jobs:
       - name: Push Docker image to DockerHub
         run: |
           docker push $DOCKER_IMAGE:$DOCKER_TAG
-
-      # Ajouter une étape pour créer un tag basé sur le SHA du commit
-      - name: Create a tag based on commit SHA
-        run: |
-          git tag ${{ github.sha }}
-          git push origin ${{ github.sha }}
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }} # Ce token est généré automatiquement par GitHub Actions
-        with:
-          tag_name: ${{ github.sha }}  # Utilise le SHA du commit comme tag
-          release_name: Release ${{ github.sha }} # Nom de la release
-          body: |
-            Changes in this Release
-          draft: false
-          prerelease: false
