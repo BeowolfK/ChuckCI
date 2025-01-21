@@ -8,6 +8,7 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    environment: envCI # Spécifie l'environnement
     env:
       DOCKER_IMAGE: vblaas/chuckci
       DOCKER_TAG: latest
@@ -25,11 +26,11 @@ jobs:
           python3 -m pytest
       
       - name: Log in to DockerHub
-        run: echo "$TOKEN_DOCKER" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           TOKEN_DOCKER: ${{ secrets.TOKEN_DOCKER }}
-
+        run: echo "$TOKEN_DOCKER" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+        
       - name: Build Docker image
         run: |
           docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
