@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Run Tests
           command: |
-            python -m pytest
+            python3 -m pytest
       - run:
           name: Build Docker Image
           command: |
