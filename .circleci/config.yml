@@ -22,7 +22,7 @@ jobs:
           command: |
             docker login -u $DOCKERHUB_USERNAME -p $TOKEN_DOCKER
       - run:
-          name: Login to DockerHub
+          name: Run and Curl APP
           command: |
             docker run -d -p 8080:8080 $DOCKER_IMAGE:$DOCKER_TAG
             sleep 10
