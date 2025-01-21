@@ -50,7 +50,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ce token est généré automatiquement par GitHub Actions
+          GITHUB_TOKEN: ${{ secrets.TOKEN }} # Ce token est généré automatiquement par GitHub Actions
         with:
           tag_name: ${{ github.ref_name }} # Utilise uniquement le nom du tag (par exemple, "v1.0.0")
           release_name: Release ${{ github.ref_name }} # Nom de la release
