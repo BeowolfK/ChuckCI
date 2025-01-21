@@ -1,0 +1,101 @@
+/* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+    color: #333;
+}
+
+/* Container styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #007BFF;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* Button styles */
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+button i {
+    margin-right: 10px;
+}
+
+/* Result container styles */
+#result {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 900px;
+}
+
+#joke-container, #dog-container {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+    min-width: 250px;
+}
+
+#joke-container h2, #dog-container h2 {
+    color: #007BFF;
+}
+
+#joke-container p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    color:white;
+}
+
+#dog-container img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    color:white
+}
+
+/* Footer styles */
+footer {
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #555;
+}

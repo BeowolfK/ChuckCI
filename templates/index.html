@@ -3,10 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image et Texte</title>
+
+    <title>Chuck Norris Jokes</title>
+    <link rel="stylesheet" href="C:\Users\doria\OneDrive\Images\CI maintient\projet\static\css\styles.css">
 </head>
 <body>
-    <p>{{ texte }}</p>
-    <img src="{{ image_url }}" alt="Image" style="max-width: 100%; height: auto;">
-</body>
-</html>
+            <div class="container">
+                <header>
+                    <h1>Blague de chuk & des chiens</h1>
+                    <p>Clique en dessous pour générer une image de chien et une blague !</p>
+                </header>
+                <main>
+                    <button id="generate-button">
+                        <i class="fas fa-laugh-beam"></i> Générer!
+                    </button>
+                    <div id="result">
+                        <div id="joke-container">
+                             <p>{{ texte }}</p>
+                        </div>
+                        <div id="dog-container">
+                                <img src="{{ image_url }}" alt="Image" style="max-width: 100%; height: auto;">                        
+                        </div>
+                    </div>
+                </main>
+                <footer>
+                    <p>Créée avec le ❤️ pour énormément de fun haha ! 😂looool</p>
+                </footer>
+            </div>
+            <script src="/static/js/script.js"></script>
+        </body>
+     </html>
