@@ -41,8 +41,26 @@ Chuck est une page permettant d'afficher une blague et uen image de chien en fai
 ```python
 gunicorn -w 4 -b 0.0.0.0 'main:app'
 ```
-   ```
-   Accédez à l'application sur `http://localhost:8000` et vérifiez son fonctionnement.
+   Accédez à l'application sur **http://localhost:8000** et vérifiez son fonctionnement.
 
----
+## Description du Code
+
+Ce projet Python utilise **Flask** pour servir une application web affichant une blague Chuck Norris traduite en français et une image aléatoire de chien. Le code repose sur trois APIs externes :
+
+- **Chuck Norris API** : Fournit une blague aléatoire.
+- **Dog CEO API** : Fournit une image aléatoire de chien.
+- **Google Translate API** : Traduit la blague Chuck Norris de l'anglais au français.
+
+### Fonctionnement :
+1. Les blagues et les images sont récupérées via des appels HTTP (module `requests`).
+2. Les données sont affichées sur une page HTML rendue à l'aide de Flask.
+3. L'application s'exécute par défaut sur le port 8000.
+
+### Structure du Code :
+- `call_chuck(url)`: Récupère une blague depuis l'API Chuck Norris.
+- `call_dog(url)`: Récupère une image aléatoire depuis l'API Dog CEO.
+- `call_translate(chuck_message)`: Traduit une blague de l'anglais au français via l'API Google Translate.
+- **Route principale** (`/`): Affiche la blague traduite et l'image de chien sur la page `index.html`.
+
+Ce code est prêt pour un déploiement local ou basé sur un conteneur Docker et peut être facilement étendu.
 
