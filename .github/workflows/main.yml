@@ -38,8 +38,9 @@ jobs:
       - name: Run Docker container and test application
         run: |
           docker run -d -p 8000:8000 $DOCKER_IMAGE:$DOCKER_TAG
-          sleep 10
+          sleep 60
           curl 127.0.0.1:8000
+          
 
       - name: Push Docker image to DockerHub
         run: |
@@ -47,12 +48,12 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: comnoco/create-release@v2
+        uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ce token est généré automatiquement par GitHub Actions
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ github.ref_name }} # Utilise uniquement le nom du tag (par exemple, "v1.0.0")
+          release_name: Release ${{ github.ref_name }} # Nom de la release
           body: |
             Changes in this Release
           draft: false
