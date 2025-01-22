@@ -14,6 +14,14 @@
         <header>
             <h1>Blague de Chuck & des chiens</h1>
             <p>Clique en dessous pour générer une image de chien et une blague !</p>
+            <label for="language-select">Choisissez une langue :</label>
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+            </select>
         </header>
         <main>
             <div id="result">
@@ -33,11 +41,15 @@
         </footer>
     </div>
     <script>
+        document.getElementById("language-select").addEventListener("change", function () {
+            const selectedLanguage = this.value;
+            console.log("Langue choisie :", selectedLanguage);
+        });
+
         document.getElementById("generate-button").addEventListener("click", function () {
             location.reload();
         });
     </script>
-
 </body>
 
 </html>
