@@ -138,3 +138,21 @@ footer {
     font-size: 0.9em;
     color: #555;
 }
+
+#language-select {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#language-select label {
+    font-size: 1em;
+    margin-right: 10px;
+    color: #007BFF;
+}
+
+#language-select select {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}

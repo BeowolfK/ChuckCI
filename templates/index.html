@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Chuck Norris Jokes</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
     <div class="container">
         <header>
-            <h1>Blague de Chuck & des chiens</h1>
-            <p>Clique en dessous pour générer une image de chien et une blague !</p>
-            <label for="language-select">Choisissez une langue :</label>
-            <select id="language-select">
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="es">Español</option>
-                <option value="de">Deutsch</option>
-                <option value="it">Italiano</option>
-            </select>
         </header>
         <main>
+            <form method="POST">
+                <div id="language-select">
+                    <label for="language">Choisissez une langue :</label>
+                    <select name="language" id="language">
+                        <option value="fr" {% if selected_lang == 'fr' %}selected{% endif %}>Français</option>
+                        <option value="en" {% if selected_lang == 'en' %}selected{% endif %}>English</option>
+                        <option value="es" {% if selected_lang == 'es' %}selected{% endif %}>Español</option>
+                        <option value="de" {% if selected_lang == 'de' %}selected{% endif %}>Deutsch</option>
+                        <option value="it" {% if selected_lang == 'it' %}selected{% endif %}>Italiano</option>
+                        <option value="pt" {% if selected_lang == 'pt' %}selected{% endif %}>Português</option>
+                        <option value="ru" {% if selected_lang == 'ru' %}selected{% endif %}>Русский</option>
+                        <option value="zh" {% if selected_lang == 'zh' %}selected{% endif %}>中文</option>
+                        <option value="ja" {% if selected_lang == 'ja' %}selected{% endif %}>日本語</option>
+                        <option value="ar" {% if selected_lang == 'ar' %}selected{% endif %}>العربية</option>
+                    </select>
+                </div>
+                <button type="submit" id="generate-button">
+                    <i class="fas fa-laugh-beam"></i> Générer!
+                </button>
+            </form>
             <div id="result">
                 <div id="joke-container">
                     <p>{{ texte }}</p>
@@ -32,24 +39,9 @@
                     <img src="{{ image_url }}" alt="Image" style="max-width: 100%; height: auto;">
                 </div>
             </div>
-            <button id="generate-button">
-                <i class="fas fa-laugh-beam"></i> Générer!
-            </button>
         </main>
         <footer>
             <p>Créée avec le ❤️ pour énormément de fun haha ! 😂looool</p>
         </footer>
     </div>
-    <script>
-        document.getElementById("language-select").addEventListener("change", function () {
-            const selectedLanguage = this.value;
-            console.log("Langue choisie :", selectedLanguage);
-        });
-
-        document.getElementById("generate-button").addEventListener("click", function () {
-            location.reload();
-        });
-    </script>
-</body>
-
 </html>
